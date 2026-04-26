@@ -1,0 +1,432 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap');
+
+  .poster {
+    font-family: 'DM Sans', sans-serif;
+    background: #0a0a12;
+    color: #f0ede6;
+    padding: 48px 40px 56px;
+    position: relative;
+    overflow: hidden;
+    min-height: 960px;
+  }
+
+  .bg-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.18;
+    pointer-events: none;
+  }
+  .orb1 { width: 400px; height: 400px; background: #5b3de8; top: -80px; left: -100px; }
+  .orb2 { width: 300px; height: 300px; background: #e85b8a; bottom: 100px; right: -60px; }
+  .orb3 { width: 200px; height: 200px; background: #3de8c8; top: 400px; left: 200px; }
+
+  .corner-deco {
+    position: absolute;
+    top: 20px; right: 20px;
+    width: 60px; height: 60px;
+    border-top: 0.5px solid rgba(168,158,245,0.25);
+    border-right: 0.5px solid rgba(168,158,245,0.25);
+    border-radius: 0 8px 0 0;
+  }
+  .corner-deco2 {
+    position: absolute;
+    bottom: 20px; left: 20px;
+    width: 60px; height: 60px;
+    border-bottom: 0.5px solid rgba(61,232,200,0.2);
+    border-left: 0.5px solid rgba(61,232,200,0.2);
+    border-radius: 0 0 0 8px;
+  }
+
+  /* BRAND HEADER */
+  .brand-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+  }
+
+  .brand-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .brand-logo {
+    width: 46px;
+    height: 46px;
+    background: linear-gradient(135deg, #5b3de8, #3de8c8);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .brand-name span { color: #a89ef5; }
+
+  .brand-tagline {
+    font-size: 11px;
+    color: rgba(240,237,230,0.35);
+    font-weight: 300;
+    margin-top: 3px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .brand-right {
+    text-align: right;
+  }
+
+  .est-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(240,237,230,0.25);
+    font-weight: 300;
+  }
+
+  /* SECTION TITLE */
+  .label-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #a89ef5;
+    background: rgba(91,61,232,0.18);
+    border: 0.5px solid rgba(168,158,245,0.3);
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 14px;
+  }
+
+  .headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin: 0 0 6px;
+    color: #ffffff;
+  }
+
+  .sub-headline {
+    font-size: 13px;
+    color: rgba(240,237,230,0.45);
+    font-weight: 300;
+    margin-bottom: 32px;
+    letter-spacing: 0.03em;
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .plan-card {
+    border-radius: 16px;
+    padding: 26px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .plan-card.standard {
+    background: rgba(255,255,255,0.05);
+    border: 0.5px solid rgba(255,255,255,0.12);
+  }
+
+  .plan-card.premium {
+    background: linear-gradient(145deg, rgba(91,61,232,0.25) 0%, rgba(232,91,138,0.15) 100%);
+    border: 1px solid rgba(168,158,245,0.45);
+  }
+
+  .plan-badge {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-bottom: 12px;
+    display: inline-block;
+  }
+
+  .badge-std { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); }
+  .badge-pro { background: rgba(168,158,245,0.25); color: #c8c0fc; }
+
+  .plan-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 21px;
+    font-weight: 700;
+    margin: 0 0 3px;
+    color: #ffffff;
+  }
+
+  .plan-tagline {
+    font-size: 12px;
+    color: rgba(240,237,230,0.42);
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6px;
+  }
+
+  .price-label { font-size: 12px; color: rgba(240,237,230,0.5); font-weight: 400; }
+
+  .price-val {
+    font-size: 19px;
+    font-weight: 500;
+    color: #ffffff;
+  }
+
+  .price-val .currency {
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(240,237,230,0.5);
+    margin-right: 2px;
+  }
+
+  .price-divider {
+    height: 0.5px;
+    background: rgba(255,255,255,0.08);
+    margin: 10px 0;
+  }
+
+  .total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .total-label {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(240,237,230,0.45);
+  }
+
+  .total-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .total-val.accent { color: #c8c0fc; }
+
+  .features-list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0;
+    border-top: 0.5px solid rgba(255,255,255,0.07);
+    padding-top: 14px;
+  }
+
+  .features-list li {
+    font-size: 12px;
+    color: rgba(240,237,230,0.58);
+    padding: 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 300;
+  }
+
+  .feat-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+  .dot-std { background: rgba(255,255,255,0.28); }
+  .dot-pro { background: #a89ef5; }
+
+  .addon-section {
+    background: rgba(61,232,200,0.07);
+    border: 0.5px solid rgba(61,232,200,0.2);
+    border-radius: 12px;
+    padding: 18px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+  }
+
+  .addon-tag {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #3de8c8;
+    margin-bottom: 4px;
+  }
+
+  .addon-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 2px;
+  }
+
+  .addon-desc { font-size: 12px; color: rgba(240,237,230,0.4); font-weight: 300; }
+
+  .addon-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 25px;
+    font-weight: 700;
+    color: #6ef5dc;
+    text-align: right;
+  }
+
+  .addon-period { font-size: 11px; color: rgba(240,237,230,0.38); margin-top: 2px; text-align: right; }
+
+  .footer-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 18px;
+    border-top: 0.5px solid rgba(255,255,255,0.07);
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.25);
+  }
+
+  .footer-brand span { color: rgba(168,158,245,0.4); }
+
+  .footer-note {
+    font-size: 11px;
+    color: rgba(240,237,230,0.22);
+    letter-spacing: 0.04em;
+  }
+</style>
+
+<div class="poster">
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+  <div class="bg-orb orb3"></div>
+  <div class="corner-deco"></div>
+  <div class="corner-deco2"></div>
+
+  <!-- BRAND HEADER -->
+  <div class="brand-header">
+    <div class="brand-left">
+      <div class="brand-logo">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+          <path d="M13 2L15.5 8.5L22 8.5L16.8 12.8L18.9 19.5L13 15.5L7.1 19.5L9.2 12.8L4 8.5L10.5 8.5Z" fill="white" opacity="0.9"/>
+        </svg>
+      </div>
+      <div>
+        <div class="brand-name">Winter<span>Tech</span></div>
+        <div class="brand-tagline">Digital Solutions &amp; Web Services</div>
+      </div>
+    </div>
+    <div class="brand-right">
+      <div class="est-label">Pricing Guide 2025</div>
+    </div>
+  </div>
+
+  <!-- SECTION INTRO -->
+  <div class="label-tag">Service Plans</div>
+  <div class="headline">Build Your Online Presence</div>
+  <div class="sub-headline">Domain &amp; hosting included · Transparent pricing · No hidden fees</div>
+
+  <!-- PLANS -->
+  <div class="plans-grid">
+
+    <div class="plan-card standard">
+      <div class="plan-badge badge-std">Starter</div>
+      <div class="plan-name">Static Plan</div>
+      <div class="plan-tagline">Fast, professional website — no surprises</div>
+
+      <div class="price-row">
+        <span class="price-label">Website design</span>
+        <span class="price-val"><span class="currency">NPR </span>18,999</span>
+      </div>
+      <div class="price-row">
+        <span class="price-label">Domain + hosting /yr</span>
+        <span class="price-val"><span class="currency">NPR </span>3,001</span>
+      </div>
+      <div class="price-divider"></div>
+      <div class="total-row">
+        <span class="total-label">Total first year</span>
+        <span class="total-val"><span style="font-size:13px;font-weight:400;opacity:0.45;margin-right:3px;">NPR</span>22,000</span>
+      </div>
+
+      <ul class="features-list">
+        <li><span class="feat-dot dot-std"></span>Static website, fully designed</li>
+        <li><span class="feat-dot dot-std"></span>Domain name registration</li>
+        <li><span class="feat-dot dot-std"></span>1-year web hosting</li>
+        <li><span class="feat-dot dot-std"></span>Mobile responsive layout</li>
+      </ul>
+    </div>
+
+    <div class="plan-card premium">
+      <div class="plan-badge badge-pro">⭐ Most Popular</div>
+      <div class="plan-name">Managed Plan</div>
+      <div class="plan-tagline">Everything managed, year-round peace of mind</div>
+
+      <div class="price-row">
+        <span class="price-label">Website + maintenance</span>
+        <span class="price-val"><span class="currency">NPR </span>35,000</span>
+      </div>
+      <div class="price-row">
+        <span class="price-label">Domain + hosting /yr</span>
+        <span class="price-val"><span class="currency">NPR </span>3,000</span>
+      </div>
+      <div class="price-divider"></div>
+      <div class="total-row">
+        <span class="total-label">Total per year</span>
+        <span class="total-val accent"><span style="font-size:13px;font-weight:400;opacity:0.55;margin-right:3px;">NPR</span>38,000</span>
+      </div>
+
+      <ul class="features-list">
+        <li><span class="feat-dot dot-pro"></span>Everything in Starter</li>
+        <li><span class="feat-dot dot-pro"></span>Full annual maintenance</li>
+        <li><span class="feat-dot dot-pro"></span>Content &amp; security updates</li>
+        <li><span class="feat-dot dot-pro"></span>Priority support</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- ADD-ON -->
+  <div class="addon-section">
+    <div>
+      <div class="addon-tag">Add-on · Available for any plan</div>
+      <div class="addon-name">Digital Marketing + SEO</div>
+      <div class="addon-desc">Search engine optimization · Social media · Ad campaigns · Analytics</div>
+    </div>
+    <div>
+      <div class="addon-amount">+NPR 10,000</div>
+      <div class="addon-period">per month</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-bar">
+    <div class="footer-brand">Winter<span>Tech</span></div>
+    <div class="footer-note">All prices in Nepalese Rupees · Contact us for a custom quote</div>
+  </div>
+</div>
